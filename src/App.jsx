@@ -17,6 +17,7 @@ export default class App extends React.Component {
         this.onUnitSystemChange = this.onUnitSystemChange.bind(this);
     }
 
+    // Updates the unit system being used
     onUnitSystemChange = (e) => {
         this.setState({
             activeUnitSystem: e.target.value,
