@@ -1,5 +1,7 @@
 import React from "react";
-import { Button, InputNumber, Space } from "antd";
+import { Button, InputNumber, Space, Typography } from "antd";
+
+const { Text } = Typography;
 
 export default class DetailsForm extends React.Component {
     constructor(props) {
@@ -30,6 +32,8 @@ export default class DetailsForm extends React.Component {
         const { isMetric } = this.props;
         const incompleteForm =
             this.state.height === null || this.state.weight === null;
+        const hasInvalidInput =
+            this.state.height <= 0 || this.state.weight <= 0;
         return (
             <Space direction="vertical">
                 <InputNumber
@@ -52,10 +56,13 @@ export default class DetailsForm extends React.Component {
                     onClick={this.calculateBMI}
                     size="large"
                     type="primary"
-                    disabled={incompleteForm}
+                    disabled={incompleteForm || hasInvalidInput}
                 >
                     Calculate
                 </Button>
+                <Text type="secondary">
+                    Not working? Your input might be incorrect
+                </Text>
             </Space>
         );
     }
