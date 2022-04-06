@@ -36,6 +36,7 @@ export default class DetailsForm extends React.Component {
                     addonAfter={isMetric ? "cm" : "ft. & inches"}
                     placeholder="Enter height"
                     onChange={this.updateForm("height")}
+                    value={this.state.height}
                 />
                 <br />
                 <InputNumber
@@ -44,10 +45,13 @@ export default class DetailsForm extends React.Component {
                     addonAfter={isMetric ? "kg" : "lbs"}
                     placeholder="Enter weight"
                     onChange={this.updateForm("weight")}
+                    value={this.state.weight}
                 />
                 <br />
                 <Button
-                    onClick={() => calculateBMI(this.state.height, this.state.weight)}
+                    onClick={() =>
+                        calculateBMI(this.state.height, this.state.weight)
+                    }
                     size="large"
                     type="primary"
                     disabled={incompleteForm || hasInvalidInput}
