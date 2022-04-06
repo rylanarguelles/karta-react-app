@@ -3,6 +3,7 @@ import { Divider, Typography, Radio, Col, Row, Space } from "antd";
 import DetailsForm from "./DetailsForm";
 import "antd/dist/antd.css";
 import "./styles/app.css";
+import AppController from "./controller";
 
 const { Title, Text } = Typography;
 
@@ -12,15 +13,28 @@ export default class App extends React.Component {
 
         this.state = {
             activeUnitSystem: "Metric",
+            result: "",
         };
 
         this.onUnitSystemChange = this.onUnitSystemChange.bind(this);
+        this.calculateBMI = this.calculateBMI.bind(this);
     }
 
     // Updates the unit system being used
     onUnitSystemChange = (e) => {
         this.setState({
             activeUnitSystem: e.target.value,
+        });
+    };
+
+    calculateBMI = (height, weight) => {
+        const result = AppController.calculateBMI(
+            this.state.activeUnitSystem,
+            height,
+            weight
+        );
+        this.setState({
+            result: result,
         });
     };
 
@@ -59,7 +73,7 @@ export default class App extends React.Component {
                         </Row>
                     </Col>
                     <Col span={8}>
-                        <DetailsForm isMetric={isMetric} />
+                        <DetailsForm calculateBMI={this.calculateBMI} isMetric={isMetric} />
                     </Col>
                 </Row>
             </Space>

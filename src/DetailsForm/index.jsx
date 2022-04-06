@@ -13,7 +13,6 @@ export default class DetailsForm extends React.Component {
         };
 
         this.updateForm = this.updateForm.bind(this);
-        this.calculateBMI = this.calculateBMI.bind(this);
     }
 
     // Updates the appropriate detail in the state
@@ -23,13 +22,8 @@ export default class DetailsForm extends React.Component {
         });
     };
 
-    // Triggers the BMI calculation to be done in the backend
-    calculateBMI() {
-        console.log(this.state);
-    }
-
     render() {
-        const { isMetric } = this.props;
+        const { calculateBMI, isMetric } = this.props;
         const incompleteForm =
             this.state.height === null || this.state.weight === null;
         const hasInvalidInput =
@@ -53,7 +47,7 @@ export default class DetailsForm extends React.Component {
                 />
                 <br />
                 <Button
-                    onClick={this.calculateBMI}
+                    onClick={() => calculateBMI(this.state.height, this.state.weight)}
                     size="large"
                     type="primary"
                     disabled={incompleteForm || hasInvalidInput}
