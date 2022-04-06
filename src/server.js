@@ -4,7 +4,6 @@ const cors = require("cors");
 
 const app = express();
 const port = 8000;
-const router = express.Router();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
