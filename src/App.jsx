@@ -32,9 +32,11 @@ export default class App extends React.Component {
             this.state.activeUnitSystem,
             height,
             weight
-        );
-        this.setState({
-            result: result,
+        ).then((response) => {
+            console.log(response.data);
+            this.setState({
+                result: response.data,
+            });
         });
     };
 
@@ -73,7 +75,10 @@ export default class App extends React.Component {
                         </Row>
                     </Col>
                     <Col span={8}>
-                        <DetailsForm calculateBMI={this.calculateBMI} isMetric={isMetric} />
+                        <DetailsForm
+                            calculateBMI={this.calculateBMI}
+                            isMetric={isMetric}
+                        />
                     </Col>
                 </Row>
             </Space>
