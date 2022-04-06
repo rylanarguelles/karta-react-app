@@ -1,6 +1,7 @@
 import React from "react";
 import { Divider, Typography, Radio, Col, Row, Space } from "antd";
 import DetailsForm from "./DetailsForm";
+import ResultCard from "./ResultCard";
 import "antd/dist/antd.css";
 import "./styles/app.css";
 import AppController from "./controller";
@@ -33,9 +34,8 @@ export default class App extends React.Component {
             height,
             weight
         ).then((response) => {
-            console.log(response.data);
             this.setState({
-                result: response.data,
+                result: response.data.toFixed(2),
             });
         });
     };
@@ -79,6 +79,9 @@ export default class App extends React.Component {
                             calculateBMI={this.calculateBMI}
                             isMetric={isMetric}
                         />
+                    </Col>
+                    <Col span={8}>
+                        <ResultCard result={this.state.result} />
                     </Col>
                 </Row>
             </Space>
